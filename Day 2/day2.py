@@ -1,4 +1,4 @@
-class Day2_Part1:
+class Day2:
     def __init__(self, filepath):
         self.filepath = filepath
 
@@ -16,15 +16,27 @@ class Day2_Part1:
             if not is_increasing and difference < 0: return False
         return True
     
+    def _report_dampener_check(self, report):
+        for i in range(len(report)):
+            report_copy = report[:]
+            report_copy.pop(i)
+            if self._report_safe_check(report_copy):
+                return True
+        return False
+    
     def get_safe_reports_count(self):
         safe_count = 0
+        dampener_safe_count = 0
         with open(filepath) as file:
             for line in file:
                 report = [int(x) for x in line.split()]
                 if self._report_safe_check(report): safe_count += 1
-        return safe_count
+                elif self._report_dampener_check(report): dampener_safe_count += 1
+        return (safe_count, dampener_safe_count)
 
 if __name__ == "__main__":
     filepath = "./input.txt"
-    day2_part1 = Day2_Part1(filepath)
-    print(f"Part 1: {day2_part1.get_safe_reports_count()} safe reports")
+    day2 = Day2(filepath)
+    safe_reports = day2.get_safe_reports_count()
+    print(f"Part 1: {safe_reports[0]} safe reports")
+    print(f"Part 2: {safe_reports[0] + safe_reports[1]} safe reports")
