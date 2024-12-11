@@ -1,7 +1,4 @@
-import sys
-
-
-class Day1:
+class Day1_Part1:
     def __init__(self, filepath):
         self.filepath = filepath
         self.list1 = []
@@ -24,6 +21,7 @@ class Day1:
         return total
 
 if __name__ == "__main__":
-    filepath = sys.argv[1]
-    day1 = Day1(filepath)
-    print(day1.calculate_total_distance())
+    # filepath = sys.argv[1]
+    filepath = "./input.txt"
+    day1_part1 = Day1_Part1(filepath)
+    print(f'Part 1: {day1_part1.calculate_total_distance()}')
