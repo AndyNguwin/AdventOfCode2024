@@ -3,13 +3,15 @@ class Day4_Part1:
         self.filepath = filepath
         self.height = 0
         self.width = 0
-        self.crossword = self._parse_file_for_crossword(filepath)
+        self.crossword = []
+        self._parse_file_for_crossword(filepath)
     
     def _parse_file_for_crossword(self, filepath):
         with open(self.filepath) as file:
             self.crossword = file.readlines()
         self.height = len(self.crossword)
         self.width = len(self.crossword[0])
+
     
     def _check_diagonals(self, row, col):
         pass
@@ -36,7 +38,7 @@ class Day4_Part1:
         pass
 
     def _check_to_top(self, row, col):
-        if (row < 3): return False
+        if row < 3: return False
         elif (self.crossword[row - 1][col] == "M" and
                 self.crossword[row - 2][col] == "A" and
                 self.crossword[row - 3][col] == "S"):
