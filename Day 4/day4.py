@@ -5,7 +5,7 @@ class Day4_Part1:
         self.width = 0
         self.crossword = self._parse_file_for_crossword(filepath)
     
-    def _parse_file_for_crossword(self)
+    def _parse_file_for_crossword(self, filepath):
         with open(self.filepath) as file:
             self.crossword = file.readlines()
         self.height = len(self.crossword)
@@ -26,7 +26,7 @@ class Day4_Part1:
     def _check_to_bottom_right(self, row, col):
         pass
 
-    def _check_staights(self, row, col):
+    def _check_straights(self, row, col):
         pass
 
     def _check_to_left(self, row, col):
@@ -36,11 +36,17 @@ class Day4_Part1:
         pass
 
     def _check_to_top(self, row, col):
-        pass
+        if (row < 3): return False
+        elif (self.crossword[row - 1][col] == "M" and
+                self.crossword[row - 2][col] == "A" and
+                self.crossword[row - 3][col] == "S"):
+                return True
+        return False
 
     def _check_to_bottom(self, row, col)
 
     def search_for_xmas(self):
+        if self.height < 4 and self.width < 4: return 0
         pass
     
 
