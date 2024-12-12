@@ -43,7 +43,8 @@ class Day4_Part1:
                 return True
         return False
 
-    def _check_to_bottom(self, row, col)
+    def _check_to_bottom(self, row, col):
+        pass
 
     def search_for_xmas(self):
         if self.height < 4 and self.width < 4: return 0
