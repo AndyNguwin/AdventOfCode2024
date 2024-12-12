@@ -15,7 +15,7 @@ class Day4_Part1:
         self.width = len(self.grid[0])
 
     def _check_to_top_left(self, row, col):
-        if (row < 3 or col < 3): pass
+        if (row < 3 or col < 3): return
         elif (self.grid[row - 1][col - 1] == "M" and
               self.grid[row - 2][col - 2] == "A" and
               self.grid[row - 3][col - 3] == "S"):
@@ -23,21 +23,22 @@ class Day4_Part1:
 
 
     def _check_to_top_right(self, row, col):
-        if (row < 3 or self.width - col < 3): pass
+        if (row < 3 or self.width - col < 4): return
         elif (self.grid[row - 1][col + 1] == "M" and
               self.grid[row - 2][col + 2] == "A" and
               self.grid[row - 3][col + 3] == "S"):
             self.xmas_count += 1
 
     def _check_to_bottom_left(self, row, col):
-        if (self.height - row < 3 or col < 3): pass
+
+        if (self.height - row < 4 or col < 3): return
         elif (self.grid[row + 1][col - 1] == "M" and
               self.grid[row + 2][col - 2] == "A" and
               self.grid[row + 3][col - 3] == "S"):
             self.xmas_count += 1
 
     def _check_to_bottom_right(self, row, col):
-        if (self.height - row < 3 or self.width - col < 3): pass
+        if (self.height - row < 4 or self.width - col < 4): return
         elif (self.grid[row + 1][col + 1] == "M" and
               self.grid[row + 2][col + 2] == "A" and
               self.grid[row + 3][col + 3] == "S"):
@@ -50,28 +51,28 @@ class Day4_Part1:
         self._check_to_bottom_right(row, col)
 
     def _check_to_left(self, row, col):
-        if col < 3: pass
+        if col < 3: return
         elif (self.grid[row][col - 1] == "M" and
               self.grid[row][col - 2] == "A" and
               self.grid[row][col - 3] == "S"):
             self.xmas_count += 1
 
     def _check_to_right(self, row, col):
-        if self.width - col < 4: pass
+        if self.width - col < 4: return
         elif (self.grid[row][col + 1] == "M" and
               self.grid[row][col + 2] == "A" and
               self.grid[row][col + 3] == "S"):
             self.xmas_count += 1
 
     def _check_to_top(self, row, col):
-        if row < 3: pass
+        if row < 3: return
         elif (self.grid[row - 1][col] == "M" and
               self.grid[row - 2][col] == "A" and
               self.grid[row - 3][col] == "S"):
             self.xmas_count += 1
 
     def _check_to_bottom(self, row, col):
-        if (self.height - row) < 4: pass
+        if (self.height - row) < 4: return
         elif (self.grid[row + 1][col] == "M" and
               self.grid[row + 2][col] == "A" and
               self.grid[row + 3][col] == "S"):
@@ -87,8 +88,9 @@ class Day4_Part1:
         if self.height < 4 and self.width < 4: return 0
         for row in range(self.height):
             for col in range(self.width):
-                self._check_diagonals(row, col)
-                self._check_straights(row, col)
+                if self.grid[row][col] == "X":
+                    self._check_diagonals(row, col)
+                    self._check_straights(row, col)
 
     def get_xmas_count(self):
         return self.xmas_count
